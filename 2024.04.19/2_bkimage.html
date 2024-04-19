@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>background image</title>
+  </head>
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+    /* 백그라운드 영역 넓혀 줌. */
+    body {
+      background-image: url("../resources/img/background_1.png");
+      /* auto : default 값이며 백그라운드 이미지의 해상도와 기기의 해상도에 따라 알아서 맞춰준다.
+      contain : 이미지의 비율은 유지하면서, 크기를 가능한 한 크게 조절한다.
+      cover : 이미지의 비율은 유지하면서, 요소의 모든 영역을 가리도록 크기를 조절한다.*/
+      background-size: cover;
+      background-repeat: no-repeat;
+      /* border-box: 배경 이미지를 테두리(border) 영역의 왼쪽 위에 맞춘다.
+         content-box: 배경 이미지를 내용(content) 영역의 왼쪽 위에 맞춘다.
+         padding-box: 기본 설정이며, 배경 이미지를 패딩(padding) 영역의 왼쪽 위에 맞춘다.*/
+      background-origin: border-box;
+      background-position: top center;
+      /* 이미지의 위치를 마음대로 움직일 수 있음. 정렬해주는 것. 두개만 들어 갈 수 있음. x축 y축 */
+      background-attachment: fixed;
+      /* 배경화면이 움직이면 안되기 때문에 고정. 스크롤 움직여도 고정 됨. */
+      background: ;
+      /* background: color | image | position / size | repeat | attachment */
+      background: url(../resources/img/라춘.jpg); center top / cover fixed;
+    }
+  </style>
+  <body>
+    <h1>삶이 그대를 속일지라도</h1>
+    <p>
+      삶이 그대를 속일지라도 슬퍼하거나 노하지 말라...지나가 버린것 그리움이
+      되리니.
+    </p>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  </body>
+</html>
