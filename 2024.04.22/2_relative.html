@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>relative</title>
+  </head>
+  <style>
+    #one {
+      background-color: aqua;
+      width: 300px;
+      height: 100px;
+      position: static;
+      /* static=기본설정 값 */
+      left: 100px;
+      top: 100px;
+    }
+    #two {
+      background-color: red;
+      width: 300px;
+      height: 100px;
+      position: relative;
+      /* 본래 있던 위치 기준으로 움직임 */
+      left: 100px;
+      top: 100px;
+    }
+    #three {
+      background-color: wheat;
+      width: 300px;
+      height: 100px;
+    }
+  </style>
+  <body>
+    <p id="one">block #1</p>
+    <div id="two">block #2<br />position: relative;</div>
+    <p id="three">block #3</p>
+  </body>
+</html>
