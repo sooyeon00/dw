@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>04.23_homework</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html,
+    body {
+      display: flex;
+      flex-direction: column;
+      border: 4px solid blue;
+      width: 100%;
+      height: 100%;
+    }
+    body {
+        margin: 0;
+    }
+    h1 {
+      text-align: center;
+    }
+    #page {
+      /* display: flex; */
+      /* flex-grow: column; */
+      /* flex-direction: column; */
+      /* border: 3px solid blue; */
+      /* height: 100%; */
+    }
+    #MyBlogPage {
+      background-color: yellow;
+      flex-grow: 3;
+      font-size: 15px;
+      text-align: center;
+      display: flex;
+      justify-content: top;
+      width: 30;
+      height: 60;
+    }
+    #Links {
+      background-color: palevioletred;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+    }
+    #SemanticTags {
+      background-color: aqua;
+      flex-grow: 1;
+      align-items: center;
+    }
+    #r {
+      background-color: aqua;
+      flex-grow: 1;
+      align-items: center;
+    }
+    #e {
+      background-color: rebeccapurple;
+      flex-grow: 2;
+      font-size: 12px;
+      text-align: center;
+      display: flex;
+      align-items: end;
+    }
+  </style>
+  <body>
+    <h1>Layout</h1>
+    <div>
+      <div id="page"></div>
+      <div id="MyBlogPage">
+        My Blog Page<br />시멘틱 태그로 만들어진 페이지 입니다.
+      </div>
+      <div id="main"></div>
+      <div>
+        <div id="Links">Links
+            <ul>
+                <li id="w3schools">w3schools</li>
+                <li id="Never">Never</li>
+                <li id="Daum">Daum</li>
+              </ul>
+              <img src="../resources/img/스폰지밥.png" width="150" height="100" />
+        </div>
+        
+      </div> 
+        <div id="SemanticTags">
+          Semantic Tags<br />
+          시멘틱 요소(Semantic elements)들은 브라우저에게 요소의 의미나 목적<br />
+          을 명확하게 알려주는 요소이다. 레이아웃을 만들때 쓰는 것. 의미가
+          있는<br />
+          요소라면 div보다는 시멘틱 태그를 사용해준다.
+        </div>
+
+        <div id="r">
+          div은 "divide"의 약자로서 페이지를 논리적인 세션으로 분리하는데
+          사용<br />
+          되는 태그이다. span요소는 인라인 요소로서 텍스트를 위한 컨테이너로<br />
+          사용할 수 있다.
+        </div>
+        <div id="e">copyright (c)2019 Hong</div>
+      </div>
+    </div>
+  </body>
+</html>

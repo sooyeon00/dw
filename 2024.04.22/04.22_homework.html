@@ -19,11 +19,13 @@
       border: 5px solid red;
       padding: 0;
       font-size: 35px;
+      /* font-size 상대단위로 써줘야 됨. */
       flex-wrap: nowrap;
       flex-direction: row;
       justify-content: stretch;
       align-content: flex-start;
       align-items: center;
+      /* 컨테이너에 작성 */
       height: 800px;
     }
     li {
@@ -37,6 +39,7 @@
       border: 3px solid black;
       background-color: beige;
       align-self: flex-start;
+      /* 아이템에 작성 */
       /* flex-direction: column; */
       /* justify-content: flex-end; */
     }

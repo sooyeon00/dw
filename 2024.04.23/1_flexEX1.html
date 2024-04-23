@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>flex</title>
+  </head>
+  <style>
+    #container {
+      border: 5px solid red;
+      border-radius: 10px;
+      font-size: 48px;
+      height: 500px;
+      display: flex;
+      /* display: flex; -> flex 컨테이너가 됨. */
+      justify-content: center;
+      /* 수평정렬(justify주축) */
+      align-items: center;
+      /* 수직정렬(align교차축) */
+      flex-direction: column;
+    }
+    .item {
+      width: 200px;
+      height: 100px;
+      border: 3px solid blue;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+  <body>
+    <div id="container">
+      <div class="item">flex</div>
+      <!-- 아이템이자 컨테이너, 자식까지만 가능하고 자손까지는 x -->
+    </div>
+  </body>
+</html>
