@@ -36,6 +36,7 @@
     #nave {
       background-color: pink;
       flex-grow: 4;
+      direction: ltr;
       /* align-items: center; */
 
       display: flex;
@@ -45,10 +46,14 @@
       flex-grow: 1;
     }
     #category {
-      flex-grow: 1;
+      flex-grow: 3;
     }
     #items {
+      background-color: white;
+      display: flex;
       flex-grow: 3;
+      border: 1px solid gray;
+      width: 65%;
     }
     #cart {
       flex-grow: 1;
@@ -60,7 +65,7 @@
       border-bottom: 1px solid black;
       padding: 10px 0;
     }
-    ul li {
+    #id li {
       display: inline;
       text-transform: uppercase;
       padding: 0 10px;
@@ -81,7 +86,7 @@
         Web Shopping
       </div>
       <div id="main">
-        <ul>
+        <ul id="id">
           <li><a href="#">HOME</a></li>
           <li><a href="#">SHOPPING</a></li>
           <li><a href="#">NEWS</a></li>
@@ -93,23 +98,62 @@
         <div id="category">
           <ul>
             <h2>카테고리</h2>
-            <li>컴퓨터</li>
-            <li>의류</li>
-            <li>음악</li>
-            <li>영화</li>
-            <li>스포츠/레저</li>
-            <li>가구/인테리어</li>
-            <li>식품</li>
-          </ul>
+            <li><a href="#">컴퓨터</a></li>
+            <li><a href="#">의류</a></li>
+            <li><a href="#">음악</a></li>
+            <li><a href="#">영화</a></li>
+            <li><a href="#">스포츠/레저</a></li>
+            <li><a href="#">가구/인테리어</a></li>
+            <li><a href="#">식품</a></li>
         </div>
         <div id="items">
-          <img src="../resources/img/본체pc.jpg" height="200px" width="200px" />
+          <div>
+            <img
+              src="../resources/img/본체pc.jpg"
+              height="200px"
+              width="200px"
+            />
+            <a href="http://www.google.com" target="_self">
+             <br>       
+             <br>
+              한성컴퓨터 tfg ax8726 데스크탑 i7
+              8700/rtx2060(로스트아크,포트나이트,배틀그라운드,배그,
+              오버워치,롤,피파,방송용,pc,방,조립,가정용,사무용,가성비,본체)</a
+            >
+            <br>
+            <br>
+            <input type="button" value="쇼핑카트에 추가하기" name="카트" />
+          </div>
 
-          <input type="button" value="쇼핑카트에 추가하기" name="카트" />
-          <img src="../resources/img/노트북.jpg" height="200px" width="200px" />
-          <input type="button" value="쇼핑카트에 추가하기" name="카트" />
-          <img src="../resources/img/맥.jpg" height="200px" width="200px" />
-          <input type="button" value="쇼핑카트에 추가하기" name="카트" />
+          <div>
+            <img
+              src="../resources/img/노트북.jpg"
+              height="200px"
+              width="200px"
+            />
+            <a href="http://www.google.com" target="_self">
+              <br>
+              <br>
+              한성컴퓨터 tfg ax8726 데스크탑 i7
+              8700/rtx2060(로스트아크,포트나이트,배틀그라운드,배그,
+              오버워치,롤,피파,방송용,pc,방,조립,가정용,사무용,가성비,본체)</a>
+            <br>
+            <br>
+            <input type="button" value="쇼핑카트에 추가하기" name="카트" />
+          </div>
+
+          <div>
+            <img src="../resources/img/맥.jpg" height="200px" width="200px" />
+            <a href="http://www.google.com" target="_self">
+              <br>
+              <br>
+              한성컴퓨터 tfg ax8726 데스크탑 i7
+              8700/rtx2060(로스트아크,포트나이트,배틀그라운드,배그,
+              오버워치,롤,피파,방송용,pc,방,조립,가정용,사무용,가성비,본체)</a>
+              <br>
+              <br>
+            <input type="button" value="쇼핑카트에 추가하기" name="카트" />
+          </div>
         </div>
         <div id="cart">
           <h3>shopping cart</h3>
