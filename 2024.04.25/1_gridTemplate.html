@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>grid Template</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+    /* 기본설정 상태 !! 화면전체를 사용할 수 있음. */
+    .container {
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+      /* padding, list-style-type -> 옆에 . 지우는 것 */
+      border: 5px solid teal;
+
+      display: grid;
+      /* flex와 다르게 사이즈를 줘야함. */
+      height: 500px;
+      /* grid-template-columns: 100px 200px; */
+      /* none, 수치 작성할 수 있음 px,% 가능. 너비값 */
+      /* grid-template-rows: 100px 200px; */
+      /* 안에 있는 트랙 사이즈를 줄이는 것. 높이값 */
+      /* px 절대단위(고정) */
+      /* grid-template-columns: 10% 20% 20%; */
+      /* % 상대단위 사용시 container 값 기준으로 */
+      /* grid-template-rows: 10% 20% 20%; */
+      /* grid-template-columns: 100px 20% 1fr; */
+      /* 100%를 여러개 나열하는건 비효율적이기 때문에 나머지 영역 채울 때 fr 사용 */
+      /* grid-template-rows: 1fr 2fr; */
+      /* grid-template-columns: repeat(3, 1fr 3fr 2fr); */
+      /* grid-template-rows: repeat(2, 1fr 2fr); */
+      /* repeat 앞에 숫자 3개의 값을 3번 반복해서 열을 만든다는 뜻
+      2(반복횟수), 1fr 2fr(반복부분) */
+      /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); */
+      /* auto-fill과 auto-fit(남는공간모두)은 column의 개수를 미리 정하지 않고 설정된 너비가 허용
+      하는 한 최대한 셀을 채운다. */
+      grid-template-columns: repeat(3, 1fr);
+      /* gap: 10px; */
+      column-gap: 10px;
+      /* 아이템들 간의 간격만 띄워주는 것. 컨테이너와의 간격을 띄워주는 것이 아님. */
+    }
+    li {
+      background-color: beige;
+      border: 5px solid tomato;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+  <body>
+    <ul class="container">
+      <li class="item">1</li>
+      <li class="item">2</li>
+      <li class="item">3</li>
+      <li class="item">4</li>
+      <li class="item">5</li>
+      <li class="item">6</li>
+      <li class="item">7</li>
+      <li class="item">8</li>
+      <li class="item">9</li>
+    </ul>
+    <!-- grid 컨테이너로 사용, 아이템의 갯수를 고려할 것. -->
+  </body>
+</html>
