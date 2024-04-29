@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    html,
+    body,
+    #wrapper {
+      width: 100%;
+      height: 100%;
+    }
+    #wrapper {
+      padding: 1rem;
+    }
+    .column {
+      margin: 15px 15px 0;
+      /* 위, 양옆, 밑 */
+      display: flex;
+    }
+    .column div {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      margin: 0 0 0 25px;
+    }
+    figure {
+      width: 300px;
+      height: 200px;
+      margin: 0;
+      overflow: hidden;
+    }
+    .column div span {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      z-index: -1;
+      display: block;
+      width: 300px;
+      text-align: center;
+      opacity: 0;
+      transition: 0.3s ease-in-out;
+    }
+    figure:hover ~ span {
+      bottom: -30px;
+      opacity: 1;
+    }
+    /* +인접형제 선택자 , ~ 일반형제 선택자*/
+
+    /* zoom in #1 */
+    .hover01 figure img {
+      transition: 0.3s ease-in-out;
+    }
+    .hover01 figure:hover img {
+      transform: scale(1.3);
+      transform-origin: 0 0;
+    }
+
+    /* zoom out #1 */
+    .hover02 figure img {
+      transition: 0.3s ease-in-out;
+      transform: scale(1.5);
+    }
+    .hover02 figure:hover img {
+      transform: scale(1);
+    }
+    /* slide */
+    .hover03 figure img {
+      transition: 0.3s ease-in-out;
+      width: 400px;
+    }
+    .hover02 figure:hover img {
+      transform: translate(-50px, 0);
+    }
+    /* Blur */
+    .hover04 figure img {
+      transition: 0.3s ease-in-out;
+      filter: grayscale(100%) blur(3px);
+    }
+    .hover04 figure:hover img {
+      filter: grayscale(0) blur(0);
+    }
+    /* flashing */
+    @keyframes flash {
+      0% {
+        opacity: 0.3;
+      }
+      100% {
+        opacity: 1;
+      }
+      /* from=0% 같은 것 */
+    }
+    .hover05 figure:hover img {
+      animation: flash 1.5s;
+    }
+    /* .hover06 div {
+        background-image: linear-gradient(45deg, red 25%, yellow 25% 50%, red 50% 75%, yellow 75%);
+        background-size: 50px 50px;
+        background-repeat: no-repeat; */
+    /* background-image: linear-gradient(135deg, red 20%, yellow 40% 60%, cyan 80%); */
+    /* 180deg(기본)  /  ~까지, (그라디언트가 채워짐) ~부터 */
+    /* } */
+    #absolDiv {
+      width: 50px;
+      height: 100%;
+      top: 0;
+      left: -75%;
+      /* 양수일때 안쪽으로 움직임. 음수일때 밖으로 움직임 */
+      position: absolute;
+      background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 100%
+      );
+      transform: skewX(-25deg);
+      opacity: 0.4;
+    }
+    .hover06 figure:hover + div {
+      animation: shine 0.75s;
+    }
+    @keyframes shine {
+      100% {
+        left: 125%;
+      }
+    }
+    .hover06 figure {
+      position: relative;
+    }
+    .hover06 figure::before {
+      /* before after 가상요소 어느 위치에 생길지 정해주는 것 */
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -75%;
+      z-index: 2;
+      display: block;
+      width: 50%;
+      height: 100%;
+      background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 100%
+      );
+      transform: skewX(-25deg);
+    }
+    .hover06 figure:hover::before {
+      animation: shine 0.75s;
+    }
+
+    /* :: 가상요소, content 필수조건 */
+  </style>
+  <body>
+    <div id="wrapper">
+      <h2>no Effect</h2>
+      <div class="column">
+        <div>
+          <figure><img src="https://picsum.photos/300/200?image=111" /></figure>
+          <!-- figure 그래프,도표,이미지 div랑 비슷함. -->
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200" /></figure>
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200" /></figure>
+          <span>Hover</span>
+        </div>
+      </div>
+
+      <h2>1. zoom in #1</h2>
+      <div class="column hover01">
+        <div>
+          <figure><img src="https://picsum.photos/300/200?image=111" /></figure>
+          <!-- figure 그래프,도표,이미지 div랑 비슷함. -->
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200" /></figure>
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200" /></figure>
+          <span>Hover</span>
+        </div>
+      </div>
+
+      <h2>2. zoom out #1</h2>
+      <div class="column hover02">
+        <div>
+          <figure><img src="https://picsum.photos/300/200?image=111" /></figure>
+          <!-- figure 그래프,도표,이미지 div랑 비슷함. -->
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200" /></figure>
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200" /></figure>
+          <span>Hover</span>
+        </div>
+      </div>
+
+      <h2>3. slide</h2>
+      <div class="column hover03">
+        <div>
+          <figure><img src="https://picsum.photos/300/200?image=111" /></figure>
+          <!-- figure 그래프,도표,이미지 div랑 비슷함. -->
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200" /></figure>
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200" /></figure>
+          <span>Hover</span>
+        </div>
+      </div>
+
+      <h2>4. Blur</h2>
+      <div class="column hover04">
+        <div>
+          <figure><img src="https://picsum.photos/300/200?image=111" /></figure>
+          <!-- figure 그래프,도표,이미지 div랑 비슷함. -->
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200" /></figure>
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200" /></figure>
+          <span>Hover</span>
+        </div>
+      </div>
+
+      <h2>5. flashing</h2>
+      <div class="column hover05">
+        <div>
+          <figure><img src="https://picsum.photos/300/200?image=111" /></figure>
+          <!-- figure 그래프,도표,이미지 div랑 비슷함. -->
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200" /></figure>
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200" /></figure>
+          <span>Hover</span>
+        </div>
+      </div>
+
+      <h2>6. shine</h2>
+      <div class="column hover06">
+        <!-- <div></div> -->
+        <div>
+          <figure><img src="https://picsum.photos/300/200?image=111" /></figure>
+          <!-- figure 그래프,도표,이미지 div랑 비슷함. -->
+          <!-- <div id="absolDiv"></div> -->
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200" /></figure>
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200" /></figure>
+          <span>Hover</span>
+        </div>
+
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      </div>
+    </div>
+  </body>
+</html>

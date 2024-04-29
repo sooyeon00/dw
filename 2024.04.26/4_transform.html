@@ -39,20 +39,32 @@
       align-items: center;
       color: white;
     }
-
     .translate:hover {
-      /* translate 요소의 위치를 x축, y축으로 이동시킨다. */
+      /* translate 요소의 위치를 x축, y축으로 이동시킨다. 가장 많이 사용 */
       transform: translate(10px, 50px);
+      transform-origin: 25% 25%;
+      /* transform-origin: 요소의 기준점을 설정할 때 사용한다. 50% 50%;=기본값 */
       transition: 1s linear;
     }
     .scale:hover {
       /*  scale : 요소의 크기를 x축으로 x배, y축으로 y배 확대 또는 축소한다.*/
-      transform: scale(0.75, 0.5);
+      transform: scale(0.5, 0.5);
+      transform-origin: 100% 100%;
       transition: 1s linear;
     }
     .skew:hover {
       /*  skew : 요소의 크기를 x축으로 x각도만큼, y축으로 y각도만큼 기울인다.*/
-      transform: skew(50deg, 0);
+      transform: skewy(50deg);
+      transition: 1s linear;
+    }
+    .rotate:hover {
+      /* rotate : 요소를 각도값만큼 회전시킨다. */
+      transform: rotate(45deg);
+      /* 기본 z축 방향으로 돌아가고 있음. */
+      transition: 1s linear;
+    }
+    .complex:hover {
+      transform: scale(1.5) translate(100px, 0);
       transition: 1s linear;
     }
   </style>
@@ -67,10 +79,10 @@
       <div class="skew">skew</div>
     </div>
     <div>
-      <div></div>
+      <div class="rotate">rotate</div>
     </div>
     <div>
-      <div></div>
+      <div class="complex">complex</div>
     </div>
     <div>
       <div></div>
