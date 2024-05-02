@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>함수</title>
+  </head>
+  <body>
+    <h1>고길동 부장님, 둘리 차장님 환영합니다!</h1>
+    <script>
+      // 함수 선언. 기본 형태
+      function showMessage(message) {
+        // 함수의 내용 . ()매개변수. 이름 지을 수 있음.
+        // console.log("showMessage 함수 호출");
+        console.log(message);
+      }
+
+      //     function aler() {
+      //     경고창을 띄우는 로직
+      //     }
+
+      //   alert();
+
+      // showMessage();
+
+      function name(a, b) {
+        // a,b 는 함수의 매개변수라고 한다.
+        // 매개변수는 함수 안({})에서만 사용할 수 있다.
+        // console.log(`${a}부장님, ${b}차장님`);
+        // function 선언까지만 실행 됨. 실행 시키려면 함수 호출해야 됨.
+        document.write(`<h1>${a} 부장님, ${b}차장님 환영합니다!</h1>`);
+      }
+
+      name("홍길동", "임꺽정");
+      name("배수연", "둘리");
+      //   실행 시키려면 함수 호출해야 됨.
+
+      function add(num1 = 0, num2 = 0) {
+        let sum = 0;
+        sum = num1 + num2;
+
+        return sum;
+        //  return 반환값. 함수가 끝나고 값을 넘겨줌.
+      }
+
+      let result = add(20, 17);
+      // () 호출 할 때 써야 됨.
+      let str = name("고길동", "또치");
+      console.log(str);
+      document.write(result);
+
+      result = add();
+      showMessage(result);
+    </script>
+  </body>
+</html>
