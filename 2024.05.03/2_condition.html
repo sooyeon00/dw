@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>조건문</title>
+  </head>
+  <body>
+    <script>
+      let year = 0;
+      year = +prompt("올해는 몇년도 입니까?");
+      console.log(year);
+      //   prompt 반환값. 값을 리턴해줌. 사용자가 입력한 값이 저장되어 있음. if에서 평가 시작.
+      //   void 반환 없음.
+
+      //   if (year == 2020) {
+      // == 동등비교연산자, === 일치비교(타입)
+      //   alert("현재 년도는 2020년 입니다.");
+      // }
+      //   if (year == 2024) {
+      //   alert("현재 년도는 2024년 입니다.");
+      // }
+      //   반드시 비교연산자가 들어가야 하는건 아님.
+      // falsy : 0, "", null, undefined, NaN ...
+
+      //   if (year == 2023) {
+      //     alert("현재 년도는 2023년 입니다.");
+      //   } else if (year == 2024) {
+      //     alert("현재 년도는 2024년 입니다.");
+      //   } else if (year == 2022) {
+      //     alert("현재 년도는 2022년 입니다.");
+      //   } else {
+      //     alert("잘못 입력하셨습니다.");
+      //   }
+      // else(그밖에,모든 것) if와 같이 사용해줘야 함. 따로는 사용 못함.
+
+      switch (year) {
+        case 2022:
+          alert("현재 년도는 2022년 입니다.");
+          break;
+        case 2023:
+          alert("현재 년도는 2023년 입니다.");
+          break;
+        case 2024:
+          alert("현재 년도는 2024년 입니다.");
+          break;
+        default:
+          alert("잘못 입력하셨습니다.");
+          break;
+        // default   else와 같은 역할
+        // switch의 case를 비교할 때는 동등비교가 아닌 일치비교를 한다.
+      }
+    </script>
+  </body>
+</html>

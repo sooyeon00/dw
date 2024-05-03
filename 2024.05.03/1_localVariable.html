@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let num = 0;
+      //   선언될 때 초기화와 선언 후에 할당으로 나뉨.
+      // 전역변수 : script 안에 있으면 전체적으로 쓸 수 있는 변수. 함수 안에서나 밖에서 다 사용가능.
+      // scope 윈도우까지 나가버림.  (let sum;)
+      function showalert() {
+        // function 함수 선언식.
+        sum = 0;
+        let message;
+        // 지역변수 : 함수에서 작성된 블록{}을 벗어나는 순간 사용할 수 없음.
+        alert(num);
+      }
+      alert(window.sum);
+      alert(message);
+
+      const func = function () {
+        // const 함수 표현식.
+      };
+    </script>
+  </body>
+</html>
