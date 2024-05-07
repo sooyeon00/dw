@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>flex</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    html,
+    body,
+    #wrapper {
+      width: 100%;
+      height: 100%;
+    }
+    #wrapper {
+      display: flex;
+      flex-direction: row;
+      /* row 기본값 */
+      justify-content: space-evenly;
+      align-items: center;
+      /* self는 아이템에게 사용!! */
+    }
+    #wrapper div {
+      width: 300px;
+      height: 300px;
+      background-color: cyan;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* 정렬할때는 공간이 필요함. 위의 부모요소를 보고 flex 만들어 주기. */
+    }
+  </style>
+  <body>
+    <div id="wrapper">
+      <div>
+        <span>정렬</span>
+      </div>
+      <div>
+        <span>정렬</span>
+      </div>
+      <div>
+        <span>정렬</span>
+      </div>
+      <div>
+        <span>정렬</span>
+      </div>
+      <div>
+        <span>정렬</span>
+      </div>
+    </div>
+  </body>
+</html>
