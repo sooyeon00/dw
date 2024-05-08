@@ -31,15 +31,128 @@
       }
       document.write(`<hr>`);
 
-      //*
-      //**
-      //***
-      //****
-      //*****
+      //*      i=1;
+      //**     i=2;
+      //***    i=3;
+      //****   i=4;
+      //*****  i=5;
 
-      for (let i = 5; i <= 1; i--) {
-        document.write(`*`);
+      for (let i = 1; i <= 5; i++) {
+        for (let j = 1; j <= i; j++) {
+          document.write(`*`);
+        }
+        document.write(`<br>`);
       }
+      document.write(`<hr>`);
+
+      //     *     &nbsp;&nbsp;&nbsp;&nbsp;*
+      //    **     &nbsp;&nbsp;&nbsp;**
+      //   ***     &nbsp;&nbsp;***
+      //  ****     &nbsp;****
+      // *****     *****
+
+      for (let i = 1; i <= 5; i++) {
+        // let i 개행하는 역할.
+        // 공백 4 3 2 1 0
+        //  i      k
+        //  1   4 3 2 1
+        //  2    4 3 2
+        //  3     4 3
+        //  4      4
+        //  5    false
+        for (let k = 4; k >= i; k--) {
+          document.write(`&nbsp;`);
+        }
+        for (let j = 1; j <= i; j++) {
+          document.write(`*`);
+        }
+        document.write(`<br>`);
+      }
+      document.write(`<hr>`);
+
+      for (let i = 1; i <= 5; i++) {
+        for (let j = 5; j >= i; j--) {
+          document.write(`*`);
+        }
+        for (let k = 2; k <= i; k++) {
+          document.write(`&nbsp;`);
+        }
+        document.write(`<br>`);
+      }
+      document.write(`<hr>`);
+      // *****
+      //  ****
+      //   ***
+      //    **
+      //     *
+      for (let i = 1; i <= 5; i++) {
+        for (let j = 1; j <= i - 1; j++) {
+          document.write(`&nbsp;`);
+        }
+        for (let k = 5; k >= i; k--) {
+          document.write(`*`);
+        }
+        document.write(`<br>`);
+      }
+      document.write(`<hr>`);
+      // 1부터 사용자가 입력한 숫자까지의 합을 더해서 화면에 출력하세요.
+      // 0. 변수 선언
+      // 1. 사용자에게 값(숫자)을 입력받는다.
+      let range = +prompt("숫자를 입력하세요.");
+      let sum = 0;
+      // +,parse~~ 숫자로 변경 시 사용.
+      // 2. 반복문을 사용하여 1부터 사용자가 입력한 숫자까지의 합을 계산한다.
+      for (let i = 1; i <= range; i++) {}
+      // while(i <= range) {
+      // sum += i;   =   sum=sum+i;
+      // i++;
+      //}
+      // 3. 계산된 합을 화면에 출력한다.
+      document.write(`사용자가 입력한 숫자: ${range}, 총 합 : ${sum}`);
+
+      document.write(`<hr>`);
+      //      * 1
+      //     *** 3
+      //    ***** 5
+      //   ******* 7
+      //  ********* 9
+      for (let i = 1; i <= 5; i++) {
+        for (let k = 4; k >= i; k--) {
+          document.write(`&nbsp`);
+        }
+        for (let m = 1; m <= 2 * i - 1; m++) {
+          document.write(`*`);
+        }
+        document.write(`<br>`);
+      }
+      document.write(`<hr>`);
+      //  ********* 9
+      //   ******* 7
+      //    ***** 5
+      //     *** 3
+      //      * 1
+      for (let i = 1; i <= 5; i++) {
+        for (let k = 1; k <= i; k++) {
+          document.write(`&nbsp`);
+        }
+        for (let m = 9; m >= 2 * i - 1; m--) {
+          document.write(`*`);
+        }
+        document.write(`<br>`);
+      }
+      document.write(`<hr>`);
+      //      * 1
+      //     *** 3
+      //    ***** 5
+      //   ******* 7
+      //  ********* 9
+      //  ********* 9
+      //   ******* 7
+      //    ***** 5
+      //     *** 3
+      //      * 1
+
+      document.write(`<hr>`);
     </script>
   </body>
 </html>
