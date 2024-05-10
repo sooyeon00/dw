@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>숫자 추측 게임1</title>
+  </head>
+  <body>
+    <h1>Number Guess</h1>
+    <p>1부터 100 사이의 정수를 입력하세요.</p>
+    <input id="number" type="text" value="" />
+    <button onclick="clickFn()">숫자 추측</button>
+    <p id="message"></p>
+    <!-- 정답인지, 큰지, 작은지 확인 용도 -->
+  </body>
+  <script>
+    //0. 변수 선언
+    const input = document.querySelector("#number");
+    const pTag = document.querySelector("#message");
+    let randNum = 0;
+    let resStr = "";
+    const MAX_COUNT = 10; //(최대횟수)
+    let count = 0;
+
+    function reset() {
+      count = 0;
+      randNum = getRandom();
+      pTag.innerHTML = "";
+      resStr = "";
+      input.value = "";
+    }
+
+    //1. 랜덤숫자를 추출한다(1 ~ 100)
+    function getRandom() {
+      return parseInt(Math.random() * 100) + 1; //return 반환+종료
+    }
+    randNum = getRandom();
+
+    //2. 사용자가 input 창에 입력한 숫자를 가져온다.
+    //2.1 input 요소에 접근한다.
+    //2.2 접근한 input 요소의 값을 가져온다.
+    function clickFn() {
+      if (count == MAX_COUNT) {
+        reset();
+        return false;
+        //false 종료 시 명시적으로 보여주는게 좋음.
+      }
+      // count++;
+      //   console.log(input.value);
+      let inputNum = input.value;
+      if (randNum == inputNum) {
+        resStr = `정답입니다!!!`;
+        alert(resStr);
+        reset();
+      } else {
+        count++; // 5회차 끝남
+        if (randNum > inputNum) {
+          resStr = `입력하신 숫자보다 큽니다. 입력하신 숫자 : ${inputNum}<br>`;
+        } else {
+          resStr = `입력하신 숫자보다 작습니다. 입력하신 숫자 : ${inputNum}<br>`;
+        }
+      }
+      pTag.innerHTML += resStr;
+      // 누적(문자열을 유지 시키긱 위함) += 복합대입 연산자로
+
+      if (MAX_COUNT == count) {
+        resStr = `게임에서 패배하셨습니다. 랜덤 숫자는 ${randNum} 이었습니다.`;
+        pTag.innerHTML = resStr;
+      }
+    }
+
+    //3. 랜덤 숫자와 가져온 값이 일치하는지 비교한다.
+    //3.1 비교해서 값이 일치하면 p태그에 정답이라는 "정답" 이라는 텍스트를 출력한다.
+    //3.2 일치하지 않으면 값을 다시 입력 받는다.
+  </script>
+</html>
