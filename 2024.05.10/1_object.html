@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>객체형</title>
+  </head>
+  <body>
+    <script>
+      // 객체(순서가 없고 변수명이 있음) 선언 방법
+      let person = {};
+      let person2 = new Object(); //클래스 개념: 하나의 집단(객체)
+
+      // 객체 생성 후 프로퍼티(변수명) 추가 방법
+      // 순서가 없기 때문에 키(중복안됨,겹칠 수 없음)와 벨류가 반드시 들어가야 함.
+      person.age = 20;
+      person.name = "홍길동";
+      person.age = 30;
+      console.log(person);
+    </script>
+  </body>
+</html>
