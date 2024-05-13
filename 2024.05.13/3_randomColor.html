@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>랜덤 색상 변경</title>
+  </head>
+  <style>
+    div {
+      width: 300px;
+      height: 200px;
+      border: 2px solid red;
+    }
+  </style>
+  <body>
+    <div></div>
+    <br />
+    <button onclick="chgBkColor()">색생변경</button>
+  </body>
+  <script>
+    function chgBkColor() {
+      const colorArr = [];
+      for (let i = 0; i < 3; i++) {
+        const randNum = parseInt(Math.random() * 256);
+        // parseInt 숫자 정수형으로 바꿔줌. 소수점 사라짐.
+        colorArr.push(randNum);
+      }
+      const divEl = document.querySelector("div");
+      divEl.style.backgroundColor = `rgb(${colorArr.toString()})`;
+      // toString 배열을 rgb값을 문자로 바꿔서 backgroundColor로 나오게 해줌.
+    }
+  </script>
+</html>
