@@ -71,16 +71,19 @@
     //11. 함수를 생성하고 함수를 호출하면 '안녕하세요!'라는 alert 창이 출력되도록 작성해보세요.
     function g() {
       alert("안녕하세요!");
-    }
-    g();
+    } // 생성
+    g(); // 호출
 
-    //12. 함수를 호출하면 body 태그에 p 태그를 추가하고 font 색상과 background-color가
+    //12. (함수를 생성한 후) 그 함수를 호출하면 body 태그에 p 태그를 추가하고 font 색상과 background-color가
     // 변경된 요소가 출력되는 함수를 작성하세요.
     const body = document.querySelector("body");
+    //document = html /querySelector("html요소") = 요소에 접근
 
     function f(message) {
-      const p = document.createElement("p");
+      const p = document.createeElment("p");
+      //createElement html 안에 생성
       p.innerHTML = message;
+      innerHTML;
       p.style.color = "red";
       p.style.backgroundColor = "blue";
       body.append(p);
