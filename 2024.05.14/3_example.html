@@ -7,7 +7,7 @@
   </head>
   <body></body>
   <script>
-    //1. 변수 두개를 선언하고 각각 초기값을 3,4로 할당하세요.
+    //1. 변수 두개를 선언하고 각각 초기값을 3,4로 할당(=변수저장)하세요.
     let a = 3;
     let b = 4;
 
@@ -35,16 +35,19 @@
     }
 
     //5. 비어있는 객체를 하나 생성해보세요.
-    let i = {};
+    let i = {}; //객체 = {}   //배열 = []
 
     //6.위에서 만든 객체에 num1과 num2 라는 프로퍼티=속성 를 추가하고
     // 각각에 1번 문제에서 만든 변수를 할당해보세요.
     i.num1 = a;
     i.num2 = b;
+    // i[a];
+    // . 동적인 프로퍼티를 가져올 수 없음 => [] 사용할 것 . 사용하면 문자로 인식
 
     //7. 위에서 만든 객체의 속성을 콘솔창에 각각 출력해 보세요.
     console.log(i.num1);
     console.log(i.num2);
+    //console.log(i.['num1']);
 
     //8. 비어있는 배열을 선언하고 그 배열에 1부터 10까지의 숫자를 추가해보세요.
     // ( 선언 이후에 값을 넣는 방법 사용)
@@ -62,6 +65,7 @@
     //10. 비어있는 배열을 선언하고 1~100 가지의 숫자중 짝수만 추가해보세요.(반복문 사용)
     const z = [];
     for (i = 1; i <= 100; i++) {
+      // for (i = 2; i <= 100; i=i+2) {
       if (i % 2 == 0) {
         z.push(i);
       }
@@ -76,17 +80,18 @@
 
     //12. (함수를 생성한 후) 그 함수를 호출하면 body 태그에 p 태그를 추가하고 font 색상과 background-color가
     // 변경된 요소가 출력되는 함수를 작성하세요.
+    // document.write(), innerHTML 프로퍼티에 전달되는 값은 문자열 이어야 한다.
     const body = document.querySelector("body");
     //document = html /querySelector("html요소") = 요소에 접근
 
     function f(message) {
-      const p = document.createeElment("p");
+      const p = document.createeElment("p"); //createeElment 태그를 만드는 것.
       //createElement html 안에 생성
       p.innerHTML = message;
       innerHTML;
       p.style.color = "red";
       p.style.backgroundColor = "blue";
-      body.append(p);
+      body.append(p); // append 객체 전달 가능함.
     }
     f("ㅋㅋㅋ");
   </script>
