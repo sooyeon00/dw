@@ -17,8 +17,26 @@
     ];
 
     // 1. 학생 이름을 대문자로 변환
+    const students1 = students.map(function (a) {
+      return a.name.toUpperCase();
+    });
+    console.log(students1);
+
     // 2. 점수가 7점 이상인 학생 필터링
+    const students2 = students.filter(function (b) {
+      return b.score > 7;
+    });
+    console.log(students2);
+
     // 3. 모든 학생의 점수 합계 구하기
+    const students3 = students.map(function (c) {
+      return c.score;
+    });
+    const students4 = students.reduce(function (x, y) {
+      return x + y;
+    });
+    console.log(students4);
+
     // 4. 모든 학생의 평균 점수 구하기(반올림)
 
     const products = [
