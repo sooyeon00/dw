@@ -1,0 +1,107 @@
+#my-input {
+  width: 200px;
+  height: 30px;
+  font-size: 20px;
+}
+
+.events {
+  width: 333px;
+  height: 34px;
+  margin: 10px 0;
+  border: 1px solid #333333;
+  border-left: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.event {
+  width: 50%;
+  padding: 5px;
+  text-align: center;
+  border-left: 1px solid #333333;
+}
+
+.check {
+  color: white;
+}
+#keypress.check {
+  background-color: #0cb30c;
+}
+/* 문자가 입력될 때    순서2*/
+#keydown.check {
+  background-color: #eb2f2f;
+}
+/* 키보드가 움직이면 무조건 작동   순서1*/
+#keyup.check {
+  background-color: #2757f5;
+}
+/* 키보드가 움직이면 무조건 작동   순서3*/
+.function-keys {
+  width: 700px;
+  margin-bottom: 10px;
+  display: flex;
+  /* flex 자식들까지만 영향을 줌 */
+  justify-content: space-between;
+}
+
+.main-keys {
+  width: 700px;
+  height: 300px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.key {
+  width: 43px;
+  height: 43px;
+  border: 1px solid #333333;
+  border-radius: 3px;
+  margin: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#Backspace,
+#Tab {
+  width: 79px;
+}
+
+#CapsLock,
+#Enter {
+  width: 86px;
+}
+
+#ShiftLeft,
+#shiftRight {
+  width: 110px;
+}
+
+#ControlLeft,
+#ControlRight,
+#AltLeft,
+#AltRight,
+#MetaLeft,
+#MetaRight {
+  width: 50px;
+}
+
+#Space {
+  width: 284px;
+}
+
+.on {
+  color: white;
+  background-color: var(--main-color);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+  transform: translateY(1px);
+}
+
+:root {
+  --main-color: white;
+  --font-color: orange;
+}
+/* :root 전역변수를 작성하는 것 */
