@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Ownglyph_noocar-Rg";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/Ownglyph_noocar-Rg.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -8,7 +16,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("../resources/img/배경색.jpg");
+  background-image: url("../resources/img/메신저\ 배경색.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   overflow: hidden;
@@ -30,6 +38,7 @@ body {
   border-radius: 15px;
   box-shadow: 1px 1px 10px #333333;
   background-color: white;
+  font-family: "Ownglyph_noocar-Rg";
 }
 
 .btn {
@@ -46,18 +55,18 @@ body {
 
 /* 썸남, 시간표시 */
 .info-block {
-  margin-left: 12px;
-  margin-right: 60px;
+  margin-left: 14px;
+  margin-right: 78px;
 }
 
 .username {
-  margin: 0 0 3px;
+  margin: 5px 0 0;
   font-size: 16px;
 }
 
 .status {
-  margin: 0;
-  font-size: 12px;
+  margin: 6px 0 0 0;
+  font-size: 13px;
   color: #999999;
 }
 
@@ -73,6 +82,7 @@ body {
   overflow: auto;
   display: flex;
   flex-direction: column;
+  font-size: 30px;
 }
 
 .bubble {
@@ -108,7 +118,7 @@ body {
 }
 
 #input {
-  width: 90%;
+  width: 95%;
   height: 100%;
   padding: 10px;
   background-color: #e5f4fb;

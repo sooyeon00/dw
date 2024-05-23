@@ -6,13 +6,20 @@
     <title>typingGame</title>
   </head>
   <style>
+    @font-face {
+      font-family: "Ownglyph_eunbyul21-Rg";
+      src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/Ownglyph_eunbyul21-Rg.woff2")
+        format("woff2");
+      font-weight: normal;
+      font-style: normal;
+    }
     * {
       box-sizing: border-box;
     }
     body {
       margin: 0;
       padding: 0;
-      background-image: url("../resources/img/background.jpg");
+      background-image: url("../resources/img/nasa-Yj1M5riCKk4-unsplash.jpg");
       background-size: cover;
       background-repeat: no-repeat;
       height: 100vh;
@@ -38,20 +45,32 @@
       left: 50%;
       bottom: 0;
       transform: translateX(-50%);
-
-      /* 단일요소 때 사이즈 맞춤, */
+      /* 단일요소 때 사이즈 맞춤 */
     }
     .word {
-      color: #ffffff;
+      color: #ced4da;
       font-size: 30px;
       font-weight: 500;
       position: absolute;
+      font-family: "Ownglyph_eunbyul21-Rg";
+    }
+    .score {
+      color: #ced4da;
+      font-size: 40px;
+      font-weight: 600;
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 15px;
+      font-family: "Ownglyph_eunbyul21-Rg";
     }
   </style>
+
   <body>
     <div id="container">
       <input id="input" type="text" placeholder="단어를 입력하세요." />
     </div>
+    <div class="score">총점 : 0</div>
   </body>
   <script>
     const words = [
@@ -64,7 +83,9 @@
       "Event",
     ];
     const input = document.querySelector("#input");
+    const scorePanel = document.querySelector(".score");
     let count = 0;
+    let score = 0;
 
     // 단어들이 뿌려질 container의 범위를 파악한다.
     const container = document.querySelector("#container");
@@ -72,7 +93,7 @@
       `offsetwidth: ${container.offsetWidth}, offsetHeight: ${container.offsetHeight}`
     );
     const maxPositionX = container.offsetWidth - 90;
-    const maxPositionY = container.offsetHeight - 90;
+    const maxPositionY = container.offsetHeight - 100;
 
     // 단어를 생성하고 화면에 출력하는 부분
     function init() {
@@ -103,6 +124,8 @@
       const word = document.querySelector(`span[id=${input.value}]`);
       if (word != null) {
         word.remove();
+        score = score + 100;
+        scorePanel.innerHTML = `총점 : ${score}`;
         count++;
 
         // 게임 클리어
@@ -117,8 +140,33 @@
     });
 
     // 단어들을 내려오게하는 부분
-    function wordRain() {}
+    function wordRain() {
+      // HTMLCollection과 NodeList 는 모두 유사배열이지만
+      // HTMLCollection은 배열 함수를 사용할 수 없다.
+      const words = document.querySelectorAll(".word");
+      // getBoundingClientRect 눈에 보여지는 사이즈로 나옴.(최종 렌더링된 크기 반환)
+      // 현재 뷰포트에서의 요소의 상대적인 위치
+      // console.log(test.offsetWidth, test.offsetHeight);
+      // offsetWidth, client-, scroll 레이아웃 자체 사이즈로 나옴.(레이아웃 크기 반환)
+      console.log(container.getBoundingClientRect().bottom - 45);
+      setInterval(function () {
+        // setInterval 계속 반복되는 함수
+        words.forEach(function (el) {
+          const rectSize = el.getBoundingClientRect();
+          el.style.top = `${rectSize.top - 75}px`;
+          if (
+            el.getBoundingClientRect().bottom >
+            container.getBoundingClientRect().bottom -
+              parseInt(getComputedStyle(input).height.split("px")[0])
+            // getComputedStyle 외부 css 내용 가져오는 것
+          ) {
+            el.remove();
+          }
+        });
+      }, 1000);
+    }
 
     init();
+    wordRain();
   </script>
 </html>
