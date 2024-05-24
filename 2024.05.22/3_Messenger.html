@@ -52,35 +52,24 @@
     </div>
   </body>
   <script>
+    const input = document.querySelector("#in-put");
     const chatBox = document.querySelector("#chat-box");
-    const input = document.querySelector('#input');
-    const send = document.querySelector("#sendBtn");
+    const send = document.querySelector("send");
 
-    function sandMyText() {
-        const newMessage = input.value;
-        if (newMessage.length == 0) {
-            return false;
-        }
-        let changeMessage = newMessage.replaceAll(" ", "&nbsp;");
-        changeMessage = changeMessage.replaceAll("\n", "<br />");
-
-        const div = document.createElement('div');
-        div.innerHTML = changeMessage;
-
-        div.classList("bubble", "my-bubble");
-        chatBox.append(div);
-        input.value = '';
+    function sendMyText() {
+      const newMessage = input.value;
+      if (newMessage.length == 0)
+      return false;
     }
-     function sendMyTextByEnter(e) {
-        console.log(e);
-        if (e.key == "Enter" && !e.shiftKey) {
-            sendMyText();
-            e.preventDefault();
-        }
-     }
 
-     send.addEventListener("click", sendMyText);
-     input.addEventListener("keypress", sendMyTextByEnter);
+    let changeMessage = newMessage.replaceAll(" ", "&nbsp");
+    changeMessage = changeMessage.replaceAll("\n", "< /br>");
+
+    const div = document.createElement("div");
+
+    div.innerHTML = changeMessage;
+
+    
   </script>
 </body>
 </html>

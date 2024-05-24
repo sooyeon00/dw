@@ -1,9 +1,18 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 #my-input {
   width: 200px;
   height: 30px;
   font-size: 20px;
 }
-
 .events {
   width: 333px;
   height: 34px;
@@ -25,15 +34,15 @@
   color: white;
 }
 #keypress.check {
-  background-color: #0cb30c;
+  background-color: #b2f2bb;
 }
 /* 문자가 입력될 때    순서2*/
 #keydown.check {
-  background-color: #eb2f2f;
+  background-color: #ffa8a8;
 }
 /* 키보드가 움직이면 무조건 작동   순서1*/
 #keyup.check {
-  background-color: #2757f5;
+  background-color: #bac8ff;
 }
 /* 키보드가 움직이면 무조건 작동   순서3*/
 .function-keys {
