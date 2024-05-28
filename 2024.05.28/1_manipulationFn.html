@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>조작 관련 함수</title>
+    <script src="../resources/js/jquery-3.6.4.js"></script>
+  </head>
+  <style>
+    * {
+    }
+    p {
+      cursor: pointer;
+    }
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+  <body>
+    <p>라춘</p>
+    <p>벚꽃</p>
+    <p>스폰지밥</p>
+    <p>커피</p>
+  </body>
+  <script>
+    const imgArr = ["라춘.jpg", "벚꽃.jpg", "스폰지밥.png", "커피.jpg"];
+    $("p").on("click", function () {
+      // h2[i] == e.key == this
+      const index = $(this).index();
+      const pTags = $("p");
+      console.log(pTags);
+      //console.log(index);
+      // 요소 내부에 추가
+      const imgTag = `<img src="../resources/img/${imgArr[index]}">`;
+      // ~에 ~무엇을 ==> append
+      //$(this).append(imgTag);
+      // ~무엇을 ~에 ==> appendTo
+      //$(imgTag).appendTo(this);
+      // ~에 ~무엇을
+      //$(this).prepend(imgTag);
+      // ~을 ~어디에 ==> prependTo
+      //$(imgTag).prependTo(this);
+
+      // 요소 외부에 추가
+      //$(this).after(imgTag);
+      //$(imgTag).insertAfter(this);
+      //$(this).before(imgTag);
+      $(imgTag).insertBefore(this);
+    });
+  </script>
+</html>

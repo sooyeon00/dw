@@ -9,5 +9,100 @@
     <div id="container">
       <input id="input" type="text" placeholder="단어를 입력하세요." />
     </div>
+    <div class="score">총점 : 0</div>
   </body>
+  <style>
+    @font-face {
+      font-family: "Ownglyph_eunbyul21-Rg";
+      src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/Ownglyph_eunbyul21-Rg.woff2")
+        format("woff2");
+      font-weight: normal;
+      font-style: normal;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url("../resources/img/nasa-Yj1M5riCKk4-unsplash.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #container {
+      width: 90%;
+      height: 80%;
+      position: relative;
+      /* display: flex;
+      justify-content: center;
+      align-items: flex-end; */
+    }
+    #input {
+      width: 180px;
+      height: 45px;
+      font-size: 16px;
+      padding: 10px;
+      border: none;
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      /* 단일요소 때 사이즈 맞춤 */
+    }
+    .word {
+      color: #ced4da;
+      font-size: 30px;
+      font-weight: 500;
+      position: absolute;
+      font-family: "Ownglyph_eunbyul21-Rg";
+    }
+    .score {
+      color: #ced4da;
+      font-size: 40px;
+      font-weight: 600;
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 15px;
+      font-family: "Ownglyph_eunbyul21-Rg";
+    }
+  </style>
+  <script>
+    const words = [
+      "DW",
+      "Javascript",
+      "DOM",
+      "BOM",
+      "document",
+      "window",
+      "Event",
+    ];
+    const input = document.querySelector("#input");
+    const scorePanel = document.querySelector(".score");
+    let count = 0;
+    let score = 0;
+
+    const container = document.querySelector("#container");
+    console.log(
+      `offsetwidth: ${container.offsetWidth}, offsetHeight: ${container.offsetHeight}`
+    );
+    const maxPositionX = container.offsetwidth - 90;
+    const maxPositionY = container.offsetHeight - 100;
+
+    function init() {
+      words.forEach(function (el) {
+        const span = document.createElement("span");
+        span.innerHTML = el;
+        span.classList.add("word");
+        span.setAttribute("id", el);
+        span.style.top = `${Math.floor(Math.random() * maxPositionY)}px`;
+        span.style.left = `${Math.floor(Math.random() * maxPositionX)}px`;
+        container.append(span);
+      });
+    }
+  </script>
 </html>
