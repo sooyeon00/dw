@@ -5,12 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>typingGame</title>
   </head>
-  <body>
-    <div id="container">
-      <input id="input" type="text" placeholder="단어를 입력하세요." />
-    </div>
-    <div class="score">총점 : 0</div>
-  </body>
   <style>
     @font-face {
       font-family: "Ownglyph_eunbyul21-Rg";
@@ -71,6 +65,13 @@
       font-family: "Ownglyph_eunbyul21-Rg";
     }
   </style>
+
+  <body>
+    <div id="container">
+      <input id="input" type="text" placeholder="단어를 입력하세요." />
+    </div>
+    <div class="score">총점 : 0</div>
+  </body>
   <script>
     const words = [
       "DW",
@@ -90,7 +91,7 @@
     console.log(
       `offsetwidth: ${container.offsetWidth}, offsetHeight: ${container.offsetHeight}`
     );
-    const maxPositionX = container.offsetwidth - 90;
+    const maxPositionX = container.offsetWidth - 90;
     const maxPositionY = container.offsetHeight - 100;
 
     function init() {
@@ -101,8 +102,48 @@
         span.setAttribute("id", el);
         span.style.top = `${Math.floor(Math.random() * maxPositionY)}px`;
         span.style.left = `${Math.floor(Math.random() * maxPositionX)}px`;
+        console.log(span.style.left);
         container.append(span);
       });
     }
+    input.addEventListener("change", function () {
+      const word = document.querySelector(`span[id=${input.value}]`);
+      if (word != null) {
+        word.remove();
+        score = score + 100;
+        scorePanel.innerHTML = `총점 : ${score}`;
+        count++;
+
+        if (count == words.length) {
+          alert("Clear!!");
+          if (confirm("재도전??")) {
+            window.location.reload();
+          }
+        }
+      }
+      input.value = "";
+    });
+
+    function wordRain() {
+      const words = document.querySelectorAll(".word");
+      console.log(container.getBoundingClientRect().bottom - 45);
+      setInterval(function () {
+        words.forEach(function (el) {
+          console.log(el.getBoundingClientRect());
+          const rectSize = el.getBoundingClientRect();
+          el.style.top = `${rectSize.top - 75}px`;
+          if (
+            el.getBoundingClientRect().bottom >
+            container.getBoundingClientRect().bottom -
+              parseInt(getComputedStyle(input).height.split("px")[0])
+          ) {
+            el.remove();
+          }
+        });
+      }, 1000);
+    }
+
+    init();
+    wordRain();
   </script>
 </html>
