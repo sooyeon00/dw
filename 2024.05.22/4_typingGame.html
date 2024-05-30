@@ -102,10 +102,10 @@
         span.setAttribute("id", el);
         span.style.top = `${Math.floor(Math.random() * maxPositionY)}px`;
         span.style.left = `${Math.floor(Math.random() * maxPositionX)}px`;
-        console.log(span.style.left);
         container.append(span);
       });
     }
+
     input.addEventListener("change", function () {
       const word = document.querySelector(`span[id=${input.value}]`);
       if (word != null) {
@@ -113,9 +113,8 @@
         score = score + 100;
         scorePanel.innerHTML = `총점 : ${score}`;
         count++;
-
         if (count == words.length) {
-          alert("Clear!!");
+          alert("clear!!");
           if (confirm("재도전??")) {
             window.location.reload();
           }
@@ -126,10 +125,8 @@
 
     function wordRain() {
       const words = document.querySelectorAll(".word");
-      console.log(container.getBoundingClientRect().bottom - 45);
       setInterval(function () {
         words.forEach(function (el) {
-          console.log(el.getBoundingClientRect());
           const rectSize = el.getBoundingClientRect();
           el.style.top = `${rectSize.top - 75}px`;
           if (
