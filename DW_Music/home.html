@@ -202,6 +202,7 @@
     chartArr.forEach((info, idx) => {
       charts.insertAdjacentHTML(
         "beforeend",
+        // 타켓 요소 '끝나는 태그' 바로 직전(자식요소로)에 요소를 생성 - '종료 태그' 앞(자식 요소로)
         `
             <li class="chart">
                 <img class="chart-cover" src="resources/img/img_chart_${
@@ -223,6 +224,8 @@
             `
       );
     });
+    // insertAdjacentHTML => 인자2개(position, html) , 기존 노드 건드리지 않고 노드 추가
+    // position 종류 4가지 (beforebegin, afterbegin, beforeend, afterend)
 
     const menuItems = document.querySelectorAll(".menu-item");
     menuItems.forEach((el, idx) => {
