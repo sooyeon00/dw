@@ -7,12 +7,13 @@ function Star() {
 }
 
 function Rating(props) {
-  return;
-  <div>
-    {RATINGS.map((arrNum) => (
-      <Star key={arrNum} />
-    ))}
-  </div>;
+  return (
+    <div>
+      {RATINGS.map((arrNum) => (
+        <Star key={arrNum} />
+      ))}
+    </div>
+  );
 }
 
 export default Rating;

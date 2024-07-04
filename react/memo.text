@@ -13,7 +13,7 @@ refi app -> 다운로드(Refi-App-0.0.19.dmg)
 ctrl + ` ->  노드설치
 1. node -v 확인
 2. cd: chage direct  // cd .. : 뒤로가기
-*tap 완성시키기
+*tap 완성시키기 (cd /dw/ react/ cd 파일명 )
 3. npm install -g npm@10.8.1
  npm install react-scripts
 4. npx create-react-app 01-dice_game(파일명!)

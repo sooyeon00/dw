@@ -1,5 +1,6 @@
 import React from "react";
 import ReviewForm from "../ReviewForm";
+import logoImg from "../assets/logo.png";
 
 function App() {
   return (
