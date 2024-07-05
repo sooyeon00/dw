@@ -4,7 +4,13 @@ import ReviewForm from "./ReviewForm";
 import ticketImg from "./assets/ticket.png";
 import ReviewList from "./ReviewList";
 import mockItems from "./mock.json";
-import { getDatas, getDatasByOrder, getDatasByOrderLimit } from "./firebase";
+import {
+  addDatas,
+  deleteDatas,
+  getDatas,
+  getDatasByOrder,
+  getDatasByOrderLimit,
+} from "./firebase";
 import { useEffect, useState } from "react";
 import "./firebase.js";
 import { limit } from "firebase/firestore";
@@ -58,6 +64,29 @@ function App() {
     handleLoad({ order: order, limit: LIMIT, lq: lq });
   };
 
+  const handleAddSuccess = (data) => {
+    setItems((prevItems) => [data, ...prevItems]);
+  };
+
+  const handleDelete = async (docId, imgUrl) => {
+    // 1. 파이어베이스에 접근해서 imgUrl을 사용해 스토리지에 있는 사진파일 삭제
+    // 2. docId를 사용해 문서 삭제
+    const result = await deleteDatas("movie", docId, imgUrl);
+    // db에서 삭제를 성공했을 때문 그결과를 화면에 반영한다.
+    if (!result) {
+      alert("저장된 이미지 파일이 없습니다. \n관리자에게 문의하세요.");
+      return false;
+    }
+    // 3. items에서 docId가 같은 요소(객체)를 찾아서 제거
+    setItems((prevItems) => {
+      const filterArr = prevItems.filter((item) => {
+        return item.docId !== docId;
+      });
+      return filterArr;
+    });
+    setItems((prevItems) => prevItems.filter((item) => item.docId !== docId));
+  };
+
   useEffect(() => {
     handleLoad({ order: order, limit: LIMIT });
     setHasNext(true);
@@ -79,7 +108,7 @@ function App() {
       </nav>
       <div className="App-container">
         <div className="App-ReviewForm">
-          <ReviewForm />
+          <ReviewForm addData={addDatas} handleAddSuccess={handleAddSuccess} />
         </div>
         <div className="App-sorts">
           <AppSortbutton
@@ -96,7 +125,7 @@ function App() {
           </AppSortbutton>
         </div>
         <div className="App-ReviewList">
-          <ReviewList items={items} />
+          <ReviewList items={items} handleDelete={handleDelete} />
           <button
             className="App-load-more-button"
             onClick={handleMoreClick}
