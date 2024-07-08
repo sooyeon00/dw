@@ -162,13 +162,37 @@ async function deleteDatas(collectionName, docId, imgUrl) {
   }
 }
 
-async function updateDatas(collectionName, docId, upcateInfoObj) {
+async function updateDatas(collectionName, dataObj, docId) {
   // doc(db, 컬렉션명, 문서ID);
   // getDocs(문서레퍼런스);
   // updateDoc(문서데이터, 수정할 정보객체);
   const docRef = await doc(db, collectionName, docId);
-  // const getData = await getDoc(docRef);
-  await updateDoc(docRef, upcateInfoObj);
+  // 수정할 데이터 양식 생성 => title, content, rating, updateAt, imgUrl
+  const time = new Date().getTime();
+  dataObj.updatedAt = time;
+  // 사진파일이 수정되면 => 기존사진 삭제 => 새로운사진 추가 => url 받아와서 imgUrl 값 셋팅
+  if (dataObj.imgUrl !== null) {
+    // 기존사진 url 가져오기
+    const docSnap = await getDoc(docRef);
+    const prevImgUrl = docSnap.data().imgUrl;
+    // 스토리지에서 기존사진 삭제
+    const storage = getStorage();
+    const deleteRef = ref(storage, prevImgUrl);
+    await deleteObject(deleteRef);
+    // 새로운 사진 추가
+    const uuid = crypto.randomUUID();
+    const path = `movie/${uuid}`;
+    const url = await uploadImage(path, dataObj.imgUrl);
+    dataObj.imgUrl = url;
+  } else {
+    // imgUrl 프로퍼티 삭제 (객체, 삭제할 프롭)
+    delete dataObj["imgUrl"];
+  }
+  // 사진파일이 수정되지 않으면 => 변경데이터만 업데이트
+  await updateDoc(docRef, dataObj);
+  const updatedData = await getDoc(docRef); // getDocs().docs.map (doc => {})
+  const resultData = { docId: updatedData.id, ...updatedData.data() };
+  return resultData;
 }
 
 // 비동기 async,await(=than) - 순서대로 실행될 수 있게끔

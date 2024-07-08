@@ -3,8 +3,8 @@ import placeholderImg from "./assets/preview-placeholder.png";
 import "./FileInput.css";
 import resetImg from "./assets/ic-reset.png";
 
-function FileInput({ inputName, onChange, value }) {
-  const [preview, setPreview] = useState();
+function FileInput({ inputName, onChange, value, initialPreview }) {
+  const [preview, setPreview] = useState(initialPreview); //initialPreview 수정버튼 눌렀을 때만 실행
   const inputRef = useRef();
 
   const handleFileChange = (e) => {
@@ -51,7 +51,10 @@ function FileInput({ inputName, onChange, value }) {
 
   return (
     <div className="FileInput">
-      <img className="FileInput-preview" src={preview || placeholderImg} />
+      <img
+        className={`FileInput-preview ${preview ? "selected" : ""}`}
+        src={preview || placeholderImg}
+      />
       <input
         className="FileInput-hidden-overlay"
         type="file"

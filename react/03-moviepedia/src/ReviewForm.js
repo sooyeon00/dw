@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useTransition } from "react";
 import FileInput from "./FileInput.js";
 import RatingInput from "./RatingInput.js";
 import "./ReviewForm.css";
+import { LocaleContext, useLocale } from "./contexts/LocaleConext.js";
+import useTranslate from "./hooks/useTranslate.js";
 
 const INITIAL_VALUE = {
   title: "",
@@ -10,9 +12,16 @@ const INITIAL_VALUE = {
   imgUrl: null,
 };
 
-function ReviewForm({ addData, handleAddSuccess }) {
-  const [values, setValues] = useState({ INITIAL_VALUE });
+function ReviewForm({
+  onSubmit,
+  handleSubmitSuccess,
+  initialPreview,
+  initialValues = INITIAL_VALUE,
+  handleCancel,
+}) {
+  const [values, setValues] = useState(initialValues);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const t = useTranslate();
 
   const handleChange = (name, value) => {
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
@@ -20,8 +29,8 @@ function ReviewForm({ addData, handleAddSuccess }) {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     handleChange(name, value);
-    setValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -29,8 +38,8 @@ function ReviewForm({ addData, handleAddSuccess }) {
     setIsSubmitting(true);
     e.target.reset();
 
-    const result = await addData("movie", values);
-    handleAddSuccess(result);
+    const result = await onSubmit("movie", values);
+    handleSubmitSuccess(result);
     setValues(INITIAL_VALUE);
     // 버튼 활성화
     setIsSubmitting(false);
@@ -43,6 +52,7 @@ function ReviewForm({ addData, handleAddSuccess }) {
           inputName="imgUrl"
           onChange={handleChange}
           value={values.imgUrl}
+          initialPreview={initialPreview}
         />
         {/* onChange={handleChange} 값을 전달하는 용도. 프롭 */}
       </div>
@@ -51,8 +61,9 @@ function ReviewForm({ addData, handleAddSuccess }) {
         <input
           type="text"
           name="title"
-          placeholder="제목을 입력해주세요."
-          onChange={handleInputChange} // html 같은 {함수실행}
+          placeholder={t("title placeholder")}
+          onChange={handleInputChange}
+          value={values.title} // html 같은 {함수실행}
         />
         <RatingInput
           inputName="rating"
@@ -61,11 +72,17 @@ function ReviewForm({ addData, handleAddSuccess }) {
         />
         <textarea
           name="content"
-          placeholder="내용을 입력해주세요."
+          placeholder={t("content placeholder")}
           onChange={handleInputChange}
+          value={values.content}
         />
+        {handleCancel && (
+          <button onClick={() => handleCancel(null)}>
+            {t("cancel button")}
+          </button>
+        )}
         <button type="submit" disabled={isSubmitting}>
-          확인
+          {t("confirm button")}
         </button>
       </div>
     </form>
