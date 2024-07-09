@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import Cleanup from "./Cleanup";
+import ToDoList from "./ToDoList";
+import MovieApp from "./MovieApp";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -12,7 +15,7 @@ function App() {
     console.log(e.target.value);
   };
   useEffect(() => {
-    console.log("나는 화면이 최초 렌더링될 때 실행되는 uef야.");
+    console.log("나는 화면이 최초 렌더링될 때 실행되는 uef야."); // == 컴포넌트가 실행 될 때
   }, []); //[](디펜던시 리스트) 안에는 react 가 무엇을 지켜볼 지 작성해준다. 무조건 최초는 한번 실행
   useEffect(() => {
     console.log("나는 count가 변경될 때 실행되는 uef야");
@@ -23,7 +26,7 @@ function App() {
 
   return (
     <div className="App">
-      <input
+      {/* <input
         type="text"
         placeholder="search here"
         onChange={(e) => {
@@ -34,6 +37,12 @@ function App() {
       <h2>입력한 값 : {input}</h2>
       <h1>{count}</h1>
       <button onClick={handleClick}>Click me</button>
+      <hr />
+      <Cleanup />
+      <hr />
+      <ToDoList />
+      <hr /> */}
+      <MovieApp />
     </div>
   );
 }
