@@ -40,7 +40,7 @@
 .content {
   flex-grow: 1;
 }
-.add-item {
+.addItem {
   display: block;
   text-decoration: none;
   color: #464e5e;
@@ -48,7 +48,7 @@
   padding: 24px 48px;
   border-radius: 8px;
 }
-.add-item:hover {
+.addItem:hover {
   background-color: #f4f7fb;
 }
 .items {
@@ -134,7 +134,7 @@
     padding: 4px 8px;
     gap: 8px;
   }
-  .add-item {
+  .addItem {
     padding: 20px 24px;
   }
   .item {

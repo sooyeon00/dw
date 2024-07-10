@@ -15,7 +15,7 @@ ctrl + ` ->  노드설치
 2. cd: chage direct  // cd .. : 뒤로가기
 *tap 완성시키기 (cd /dw/ react/ cd 파일명 )
 3. npm install -g npm@10.8.1
- npm install react-scripts
+ npm install react-scripts    ,  npm install firebase
 4. npx create-react-app 01-dice_game(파일명!)
 5. y
 6. cd 01-dice_game
