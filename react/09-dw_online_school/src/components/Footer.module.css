@@ -1,0 +1,38 @@
+.footer {
+  padding: 20px 0 53px;
+  color: #878787;
+  background-color: #494949;
+}
+.links {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  color: #c4c4c4;
+  list-style-type: none;
+  /* 점지워주는 */
+  padding: 0;
+}
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 30px;
+  list-style-type: none;
+  padding: 0;
+}
+.icons {
+  display: flex;
+  justify-content: space-between;
+}
+.logo {
+  font-family: "HancomMalangMalang-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2406-1@1.0/HancomMalangMalang-Regular.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+.logo > span {
+  background-color: #878787;
+  color: #515151;
+}
