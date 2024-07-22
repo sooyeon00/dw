@@ -24,6 +24,7 @@ ctrl + ` ->  노드설치
 
 npm install classnames  설치
 npm i react-router-dom  설치
+npm install dompurify 설치(정화)
 
 
 대문자- 컴포넌트

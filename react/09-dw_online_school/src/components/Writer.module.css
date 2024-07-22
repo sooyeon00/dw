@@ -1,0 +1,18 @@
+.writer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.writer .info {
+}
+.writer .name {
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  font-weight: #494949;
+}
+.writer .level {
+  font-size: 12px;
+  font-weight: 500;
+  color: #c4c4c4;
+}
