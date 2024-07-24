@@ -14,6 +14,7 @@ import {
   limit,
   startAfter,
 } from "firebase/firestore";
+
 import {
   deleteObject,
   getDownloadURL,
@@ -21,8 +22,6 @@ import {
   ref,
   uploadBytes,
 } from "firebase/storage";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
-// import, from 불러올 때
 
 const firebaseConfig = {
   apiKey: "AIzaSyDOUz1yfB1zaSKLOWMP4bVRyT_dqJwCMT0",
@@ -48,18 +47,19 @@ function createPath(path) {
 }
 
 async function addDatas(collectionName, addObj) {
-  // 파일 저장 ==> 스토리지의 이미지  url을 addObj의 imgUrl 값으로 변경
+  // 파일 저장 ==> 스토리지의 이미지 url을 addObj의 imgUrl 값으로 변경
   const path = createPath("food/");
   const url = await uploadImage(path, addObj.imgUrl);
   addObj.imgUrl = url;
-  // id생성
+
+  // id 생성
   const lastId = (await getLastNum(collectionName, "id")) + 1;
   addObj.id = lastId;
 
   // 시간 정보 생성
   const time = new Date().getTime();
   addObj.createdAt = time;
-  addObj.updateddAt = time;
+  addObj.updatedAt = time;
 
   // 컬렉션에 저장
   await addDoc(getCollection(collectionName), addObj);
@@ -72,7 +72,7 @@ async function uploadImage(path, file) {
   // File 객체를 스토리지에 저장
   await uploadBytes(imageRef, file);
 
-  // 저장한 File의 Url을 받는다.
+  // 저장한 File의 url을 받는다.
   const url = await getDownloadURL(imageRef);
   return url;
 }
@@ -88,4 +88,31 @@ async function getLastNum(collectionName, field) {
   return lastId;
 }
 
-export { addDatas };
+async function getDatasOrderByLimit(collectionName, options) {
+  const { fieldName, limits } = options;
+  let q;
+  if (!options.lq) {
+    const q = query(
+      getCollection(collectionName),
+      orderBy(fieldName, "desc"),
+      limit(limits)
+    );
+  } else {
+    q = query(
+      getCollection(collectionName),
+      orderBy(fieldName, "desc"),
+      startAfter(options.lq),
+      limit(limits)
+    );
+  }
+
+  const snapshot = await getDocs(q);
+  const docs = snapshot.docs;
+  const lastQuery = docs[docs.length - 1];
+  const resultData = docs.map(function (doc) {
+    return { ...doc.data(), docId: doc.id };
+  });
+  return { resultData, lastQuery };
+}
+
+export { addDatas, getDatasOrderByLimit };
