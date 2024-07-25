@@ -1,9 +1,20 @@
 import React, { useState } from "react";
 import "./FoodList.css";
+import FoodForm from "./FoodForm";
 
-function FoodListItem({ item }) {
-  console.log(item);
-  const { title, calorie, content, updatedAt, imgUrl } = item;
+function formatDate(value) {
+  const date = new Date(value);
+  return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}.`;
+}
+
+function FoodListItem({ item, onDelete, onEdit }) {
+  const { title, createdAt, content, calorie, imgUrl, docId, id } = item;
+  const handleDeleteClick = () => {
+    onDelete(docId, imgUrl);
+  };
+  const handleEditClick = () => {
+    onEdit(id);
+  };
   return (
     <div className="FoodListItem">
       <img className="FoodListItem-preview" src={imgUrl} />
@@ -14,12 +25,20 @@ function FoodListItem({ item }) {
         </div>
         <p className="FoodListItem-content">{content}</p>
         <div className="FoodListItem-date-buttons">
-          <p className="FoodListItem-date">
-            {new Date(updatedAt).toLocaleDateString("KO-KR")}
-          </p>
+          <p className="FoodListItem-date">{formatDate(createdAt)}</p>
           <div className="FoodListItem-buttons">
-            <button className="FoodListItem-edit-button">수정</button>
-            <button className="FoodListItem-delete-button">삭제</button>
+            <button
+              className="FoodListItem-edit-button"
+              onClick={handleEditClick}
+            >
+              수정
+            </button>
+            <button
+              className="FoodListItem-delete-button"
+              onClick={handleDeleteClick}
+            >
+              삭제
+            </button>
           </div>
         </div>
       </div>
@@ -27,13 +46,43 @@ function FoodListItem({ item }) {
   );
 }
 
-function FoodList({ items }) {
+function FoodList({ items, onDelete, onUpdate, onUpdateSuccess }) {
+  const [editingId, setEditingId] = useState(null);
   return (
     <ul className="FoodList">
       {items.map((item) => {
+        if (item.id === editingId) {
+          const { id, title, imgUrl, calorie, content, docId } = item;
+          const initialValues = { title, calorie, content, imgUrl: null };
+
+          const handleSubmit = (collectionName, updateObj) => {
+            onUpdate(collectionName, docId, updateObj);
+          };
+
+          const handleSubmitSuccess = (result) => {
+            onUpdateSuccess(result);
+            // 수정 폼을 리스트로 변경
+            setEditingId(null);
+          };
+          return (
+            <li key={item.docId}>
+              <FoodForm
+                onCancel={setEditingId}
+                initialValues={initialValues}
+                initialPreview={imgUrl}
+                onSubmit={handleSubmit}
+                onSubmitSuccess={handleSubmitSuccess}
+              />
+            </li>
+          );
+        }
         return (
           <li key={item.docId}>
-            <FoodListItem item={item} />
+            <FoodListItem
+              item={item}
+              onDelete={onDelete}
+              onEdit={setEditingId}
+            />
           </li>
         );
       })}

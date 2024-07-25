@@ -14,7 +14,6 @@ import {
   limit,
   startAfter,
 } from "firebase/firestore";
-
 import {
   deleteObject,
   getDownloadURL,
@@ -62,7 +61,10 @@ async function addDatas(collectionName, addObj) {
   addObj.updatedAt = time;
 
   // 컬렉션에 저장
-  await addDoc(getCollection(collectionName), addObj);
+  const result = await addDoc(getCollection(collectionName), addObj);
+  const docSnap = await getDoc(result);
+  const resultData = { ...docSnap.data(), docId: docSnap.id };
+  return resultData;
 }
 
 async function uploadImage(path, file) {
@@ -92,7 +94,7 @@ async function getDatasOrderByLimit(collectionName, options) {
   const { fieldName, limits } = options;
   let q;
   if (!options.lq) {
-    const q = query(
+    q = query(
       getCollection(collectionName),
       orderBy(fieldName, "desc"),
       limit(limits)
@@ -109,10 +111,39 @@ async function getDatasOrderByLimit(collectionName, options) {
   const snapshot = await getDocs(q);
   const docs = snapshot.docs;
   const lastQuery = docs[docs.length - 1];
+  console.log(lastQuery);
   const resultData = docs.map(function (doc) {
     return { ...doc.data(), docId: doc.id };
   });
   return { resultData, lastQuery };
 }
 
-export { addDatas, getDatasOrderByLimit };
+async function deleteDatas(collectionName, docId, imgUrl) {
+  // 스토리이제 있는 이미지를 삭제할 때 필요한 것 ==> 파일명(경로포함) or 파일 url
+  // 스토리지 객체 생성
+  const storage = getStorage();
+  let message;
+  try {
+    message = "이미지 삭제에 실패했습니다. \n관리자에게 문의하세요.";
+    // 삭제할 파일의 참조객체 생성(ref 함수 사용)
+    const deleteRef = ref(storage, imgUrl);
+    // 파일 삭제
+    await deleteObject(deleteRef);
+
+    message = "문서 삭제에 실패했습니다. \n관리자에게 문의하세요.";
+    // 삭제할 문서의 참조객체 생성(doc 함수 사용)
+    const deleteDocRef = doc(db, collectionName, docId);
+    // 문서 삭제
+    await deleteDoc(deleteDocRef);
+
+    return { result: true, message: message };
+  } catch (error) {
+    return { result: false, message: message };
+  }
+}
+
+async function updateDatas() {
+  console.log("updateDatas 함수 실행!!");
+}
+
+export { addDatas, getDatasOrderByLimit, deleteDatas, updateDatas };

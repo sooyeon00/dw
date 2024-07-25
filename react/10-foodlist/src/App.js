@@ -1,12 +1,14 @@
 import "./App.css";
-import backgroundImg from "../assets/background.png";
-import logoImg from "../assets/logo.png";
-import logoTextImg from "../assets/logo-text.png";
-import FoodForm from "./FoodForm";
-import searchImg from "../assets/ic-search.png";
-import FoodList from "./FoodList";
+import backgroundImg from "./assets/background.png";
+import logoImg from "./assets/logo.png";
+import logoTextImg from "./assets/logo-text.png";
+// import FoodForm from "./FoodForm";
+import searchImg from "./assets/ic-search.png";
+// import FoodList from "./FoodList";
 import { useEffect, useState } from "react";
-import { getDatasOrderByLimit } from "../api/firebase";
+import { addDatas, deleteDatas, getDatasOrderByLimit } from "./api/firebase";
+import FoodList from "./components/FoodList";
+import FoodForm from "./components/FoodForm";
 
 function AppSortButton({ children, selected, onClick }) {
   return (
@@ -25,7 +27,7 @@ const LIMITS = 5;
 function App() {
   const [items, setItems] = useState([]);
   const [order, setOrder] = useState("createdAt");
-  const [lq, setLq] = useState();
+  const [lq, setLq] = useState(5);
   const [hasNext, setHasNext] = useState(true);
 
   const handleLoad = async (options) => {
@@ -50,6 +52,28 @@ function App() {
   const handleNewestClick = () => setOrder("createdAt");
   const handleCalorieClick = () => setOrder("calorie");
 
+  const handleAddSuccess = (resultData) => {
+    setItems((prevItems) => [resultData, ...prevItems]);
+  };
+
+  const handleUpdateSuccess = () => {};
+
+  const handleDelete = async (docId, imgUrl) => {
+    // items 에서 docId를 받아온다.
+    // db에서 데이터 삭제(스토리지에 있는 사진파일 삭제, database에 있는 데이터 삭제)
+    const { result, message } = await deleteDatas("food", docId, imgUrl);
+    if (!result) {
+      alert(message);
+      return;
+    }
+    // 삭제 성공시 화면에 그 결과를 반영한다.
+    setItems((prevItems) =>
+      prevItems.filter(function (item) {
+        return item.docId !== docId;
+      })
+    );
+  };
+
   useEffect(() => {
     handleLoad({ fieldName: order, limits: LIMITS, lq: undefined });
   }, [order]);
@@ -61,7 +85,7 @@ function App() {
       </div>
       <div className="App-container">
         <div className="App-FoodForm">
-          <FoodForm />
+          <FoodForm onSubmit={addDatas} onSubmitSuccess={handleAddSuccess} />
         </div>
         <div className="App-filter">
           <form className="App-search">
@@ -85,7 +109,11 @@ function App() {
             </AppSortButton>
           </div>
         </div>
-        <FoodList items={items} />
+        <FoodList
+          items={items}
+          onDelete={handleDelete}
+          onUpdateSuccess={handleUpdateSuccess}
+        />
         {hasNext && (
           <button className="App-load-more-button" onClick={handleLoadMore}>
             더 보기
